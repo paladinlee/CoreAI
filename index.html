@@ -1,24 +1,84 @@
+<!doctype html>
 <html>
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv='cache-control' content='no-cache'>
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'>
     <title>Show</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <div id="app">{{ message }}</div>
+    <div id="app">{{ pcName }}
 
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    電腦名稱
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" v-model="pcName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    資料庫名稱
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" v-model="dbName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <textarea class="form-control" rows="4" v-model="getConnection"></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
     <script>
-        const { createApp, ref } = Vue
+        const { createApp, ref, computed } = Vue
 
         createApp({
             setup() {
-                const message = ref('Hello vue!')
+                let message = ref('Hello vue!')
+                let pcName = ref("")
+                let dbName = ref("")
+                let retConnection = ref("")
+                let strConnection = "";
+
+
+                strConnection += '你是個 dotnet 8.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
+                strConnection += pcName.value
+                strConnection += '，資料庫名稱為:' + dbName.value
+                strConnection += '且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
+                console.log('pcName:', pcName)
+                console.log('pcName.value:', pcName.value)
+
+                retConnection.value = strConnection;
+                console.log('retConnection.value:', retConnection.value)
+
+                const getConnection = computed({
+                    get() {
+
+                        strConnection = '你是個 dotnet 8.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
+                        strConnection += pcName.value
+                        strConnection += '，資料庫名稱為:' + dbName.value
+                        strConnection += '且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
+                        return strConnection
+                    }
+                })
+
                 return {
-                    message
+                    message, pcName, dbName, retConnection, getConnection
                 }
             }
         }).mount('#app')

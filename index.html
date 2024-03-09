@@ -38,6 +38,22 @@
             </div>
             <div class="row">
                 <div class="col">
+                    Table 名稱
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" v-model="tbName">
+                </div>
+            </div>         
+            <div class="row">
+                <div class="col">
+                    Table Schema
+                </div>
+                <div class="col">
+                    <textarea type="text" class="form-control" v-model="tbSchema"></textarea>
+                </div>
+            </div>                 
+            <div class="row">
+                <div class="col">
                     <textarea class="form-control" rows="4" v-model="getConnection"></textarea>
                     <br>
                     適用於 MS Copilot
@@ -55,6 +71,8 @@
                 let pcName = ref("")
                 let dbName = ref("")
                 let retConnection = ref("")
+                let tbName=ref("")
+                let tbSchema=ref("")
                 let strConnection = "";
 
 
@@ -74,13 +92,17 @@
                         strConnection = '你是個 dotnet 8.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
                         strConnection += pcName.value
                         strConnection += '，資料庫名稱為:' + dbName.value
-                        strConnection += '且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
+                        strConnection += '\n且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
+                        strConnection+='資料庫MarketManagement 有一個資料表 '+ tbName.value+' ，裡面的資料結構如下：\n'
+                        strConnection+='"""\n'
+                        strConnection+=tbSchema.value
+                        strConnection+='\n"""\n'
                         return strConnection
                     }
                 })
 
                 return {
-                    message, pcName, dbName, retConnection, getConnection
+                    message, pcName, dbName, retConnection, getConnection,tbName,tbSchema
                 }
             }
         }).mount('#app')

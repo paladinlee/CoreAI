@@ -27,53 +27,59 @@
     <!-- Banner Section -->
     <section class="banner">
         <div class="container">
-        <h1 class="bannerfont">GAI Application</h1>
-        <p>This is a sample of demo GAI</p>
-        
+            <h1 class="bannerfont">GAI Application</h1>
+            <p>This is a sample of demo GAI</p>
+
         </div>
     </section>
-    <!-- End Banner Section -->    
-<div id="app">
-    <div class="container pt-2">
-        <div class="row">
-          <div class="col-sm-4">
-            <div class="container">
-                <div class="row pb-2">
-                    <div class="col-sm-4 text-end">電腦名稱</div>
-                    <div class="col-sm-8"><input type="text" class="form-control" v-model="pcName"></div>
+    <!-- End Banner Section -->
+    <div id="app">
+        <div class="container pt-2">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="container">
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">電腦名稱</div>
+                            <div class="col-sm-8"><input type="text" class="form-control" v-model="pcName"></div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">資料庫名稱</div>
+                            <div class="col-sm-8"><input type="text" class="form-control" v-model="dbName"></div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">Table 名稱</div>
+                            <div class="col-sm-8"><input type="text" class="form-control" v-model="tbName"></div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">Table Schema</div>
+                            <div class="col-sm-8"><textarea type="text" class="form-control"
+                                    v-model="tbSchema"></textarea></div>
+                        </div>
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">可編輯欄位(逗號區隔)</div>
+                            <div class="col-sm-8"><textarea type="text" class="form-control"
+                                    v-model="tbModifyColumns"></textarea></div>
+                        </div>
+                    </div>
                 </div>
-                <div class="row pb-2">
-                    <div class="col-sm-4 text-end">資料庫名稱</div>
-                    <div class="col-sm-8"><input type="text" class="form-control" v-model="dbName"></div>
-                </div>     
-                <div class="row pb-2">
-                    <div class="col-sm-4 text-end">Table 名稱</div>
-                    <div class="col-sm-8"><input type="text" class="form-control" v-model="tbName"></div>
-                </div>     
-                <div class="row pb-2">
-                    <div class="col-sm-4 text-end">Table Schema</div>
-                    <div class="col-sm-8"><textarea type="text" class="form-control" v-model="tbSchema"></textarea></div>
-                </div>                                                
-            </div>            
-          </div>
-          <div class="col-sm-8">
-            <div class="container">
-                <div class="row">
-                    <div class="col">提示詞</div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <textarea class="form-control" rows="4" v-model="getConnection"></textarea>
-                        <a href="#" title="複製"><i class="bi bi-copy fs-4"></i></a>
+                <div class="col-sm-8">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">提示詞</div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <textarea class="form-control" rows="4" v-model="getConnection"></textarea>
+                                <a href="#" title="複製"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-          </div>
         </div>
-      </div>
 
 
-</div>
+    </div>
     <script>
         const { createApp, ref, computed } = Vue
 
@@ -83,38 +89,42 @@
                 let pcName = ref("")
                 let dbName = ref("")
                 let retConnection = ref("")
-                let tbName=ref("")
-                let tbSchema=ref("")
+                let tbName = ref("")
+                let tbSchema = ref("")
+                let tbModifyColumns = ref("")
                 let strConnection = "";
 
-
-                strConnection += '你是個 dotnet 8.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
+                /*
+                strConnection += '你是個 dotnet 6.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
                 strConnection += pcName.value
                 strConnection += '，資料庫名稱為:' + dbName.value
-                strConnection += '且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
+                strConnection += '且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。t_calendarController 裡面關於 DB Connection 的連線字串，請使用 appsettings.json 的 Connection Strings 設定。'
+                strConnection += '此外，dotnet 6.0 開始，不應該在 Program.cs 出現  CreateHostBuilder 舊寫法。'
                 console.log('pcName:', pcName)
                 console.log('pcName.value:', pcName.value)
-
+                */
                 retConnection.value = strConnection;
                 console.log('retConnection.value:', retConnection.value)
 
                 const getConnection = computed({
                     get() {
 
-                        strConnection = '你是個 dotnet 8.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
+                        strConnection = '你是個 dotnet 6.0 的 MVC web工程師。如何使用 MS-SQL Express 資料庫?已經知道電腦名稱:'
                         strConnection += pcName.value
                         strConnection += '，資料庫名稱為:' + dbName.value
-                        strConnection += '\n且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。最後並註明此範例支援的 .net 版本。'
-                        strConnection+='資料庫MarketManagement 有一個資料表 '+ tbName.value+' ，裡面的資料結構如下：\n'
-                        strConnection+='"""\n'
-                        strConnection+=tbSchema.value
-                        strConnection+='\n"""\n'
+                        strConnection += '\n且是使用 Integrated Security=True 的設定方法。請不要遺漏 Program.cs 裡面相依性注入的設定。以 TestDBContext 為類別名稱，繼承 DBContext 以利後續的範例程式。t_calendarController 裡面關於 DB Connection 的連線字串，請使用 appsettings.json 的 Connection Strings 設定。'
+                        strConnection += '此外，dotnet 6.0 開始，不應該在 Program.cs 出現  CreateHostBuilder 舊寫法。'
+                        strConnection += '資料庫' + dbName.value + ' 有一個資料表 ' + tbName.value + ' ，裡面的資料結構如下：\n'
+                        strConnection += '"""\n'
+                        strConnection += tbSchema.value
+                        strConnection += '\n"""\n'
+                        strConnection += '請寫出完整的 Program.cs、appsettings.json 、TestDBContext.cs 程式碼。'
                         return strConnection
                     }
                 })
 
                 return {
-                    message, pcName, dbName, retConnection, getConnection,tbName,tbSchema
+                    message, pcName, dbName, retConnection, getConnection, tbName, tbSchema, tbModifyColumns
                 }
             }
         }).mount('#app')

@@ -60,17 +60,76 @@
                             <div class="col-sm-8"><textarea type="text" class="form-control"
                                     v-model="tbModifyColumns"></textarea></div>
                         </div>
+                        <div class="row pb-2">
+                            <div class="col-sm-4 text-end">可新增欄位(逗號區隔)</div>
+                            <div class="col-sm-8"><textarea type="text" class="form-control"
+                                    v-model="tbAddColumns"></textarea></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-sm-8">
                     <div class="container">
-                        <div class="row">
-                            <div class="col">提示詞</div>
-                        </div>
-                        <div class="row">
+                        <div class="row pb-2">
                             <div class="col">
-                                <textarea class="form-control" rows="4" v-model="getConnection"></textarea>
-                                <a href="#" title="複製"><i class="bi bi-copy fs-4"></i></a>
+                                <h1>提示詞</h1>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <textarea id="ta01" class="form-control" rows="4" v-model="getConnection"></textarea>
+                                <a href="#" title="複製" @click="doCopy('ta01')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <textarea id="ta02" class="form-control" rows="4">請問，NuGet 套件管理，需要安裝那些套件?</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta02')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <h2>Index()</h2>
+                                <textarea id="ta03" class="form-control"
+                                    rows="4">在{{tbName}}Controller.cs, 搭配SqlCommand對資料表{{tbName}}産生 index 功能，不使用EntityFramework,前端必須搭配使用bootstrap 、jquery、搭配 完整ajax程式碼 實現顯示 {{tbName}} 所有資料的頁面。注意，DB 連線請使用 appsettings.json 裡的設定，請寫出完整的View、 Controller 、 _Layout.cshtml</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta03')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <h2>編輯</h2>
+                                <textarea id="ta04" class="form-control"
+                                    rows="4">在{{tbName}}Controller.cs, 搭配SqlCommand對資料表{{tbName}}産生 edit 功能，不使用EntityFramework,前端必須搭配使用bootstrap 、jquery、搭配 完整ajax程式碼 實現完整的編輯流程。注意，DB 連線請使用 appsettings.json 裡的設定,請寫出完整的View、 Controller 、 _Layout.cshtml</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta04')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <textarea id="ta05" class="form-control"
+                                    rows="4">在 Edit 過程中，只開放 {{tbModifyColumns}} 欄位提供修改，其他未修改欄位請用原來的資料取代，您應該要在 modal 視窗用 hidden input 來保存這些不需要修改欄位的預設值。編輯完成後，請更新畫面資訊，以取得最新資料，同時也需要顯示 Edit 按鈕，以供再次編輯資料。editModal 裡面的 close button，也請提供將 modal 隱藏的程式。請完整寫出 Edit Button Click 後的完整程式碼</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta05')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <h2>新增</h2>
+                                <textarea id="ta06" class="form-control"
+                                    rows="4">在{{tbName}}Controller.cs, 搭配SqlCommand對資料表{{tbName}}産生 create 功能，不使用EntityFramework,前端必須搭配使用bootstrap 、jquery、搭配 完整ajax程式碼 實現完整的新增流程。注意，DB 連線請使用 appsettings.json 裡的設定,請寫出完整的View、 Controller 、 _Layout.cshtml</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta06')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <textarea id="ta07" class="form-control"
+                                    rows="4">在 Create 過程中，只開放 {{tbAddColumns}} 欄位提供修改。新增完成後，請更新畫面資訊，以取得最新資料，同時也需要顯示 Edit 按鈕，以供再次編輯資料。請完整寫出 Create Button Click 後的完整程式碼</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta07')"><i class="bi bi-copy fs-4"></i></a>
+                            </div>
+                        </div>
+                        <div class="row pb-5">
+                            <div class="col">
+                                <h2>刪除</h2>
+                                <textarea id="ta08" class="form-control"
+                                    rows="4">在{{tbName}}Controller.cs, 搭配SqlCommand對資料表{{tbName}}産生 delete 功能，不使用EntityFramework,前端必須搭配使用bootstrap 、jquery、搭配 完整ajax程式碼 實現完整的刪除流程。注意，DB 連線請使用 appsettings.json 裡的設定請寫出完整的View、 Controller 、 _Layout.cshtml</textarea>
+                                <a href="#" title="複製" @click="doCopy('ta08')"><i class="bi bi-copy fs-4"></i></a>
                             </div>
                         </div>
                     </div>
@@ -92,6 +151,7 @@
                 let tbName = ref("")
                 let tbSchema = ref("")
                 let tbModifyColumns = ref("")
+                let tbAddColumns = ref("")
                 let strConnection = "";
 
                 /*
@@ -106,6 +166,12 @@
                 retConnection.value = strConnection;
                 console.log('retConnection.value:', retConnection.value)
 
+                const doCopy = (taID) => {
+                    alert('已複製');
+                    var textarea = document.getElementById(taID);
+                    textarea.select(); // 選取 textarea 的內容
+                    document.execCommand('copy'); // 複製選取的內容                    
+                }
                 const getConnection = computed({
                     get() {
 
@@ -124,7 +190,7 @@
                 })
 
                 return {
-                    message, pcName, dbName, retConnection, getConnection, tbName, tbSchema, tbModifyColumns
+                    message, pcName, dbName, retConnection, getConnection, tbName, tbSchema, tbModifyColumns, tbAddColumns, doCopy
                 }
             }
         }).mount('#app')
